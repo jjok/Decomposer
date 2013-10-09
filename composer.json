@@ -1,0 +1,15 @@
+{
+	"name": "jjok/decomposer",
+	"description": "Remove all the junk from your project.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Jonathan Jefferies",
+			"email": "jonathan@jjok.co.uk"
+		}
+	],
+	"require": {
+		"symfony/console": "2.*",
+		"symfony/finder": "2.*"
+	}
+}
