@@ -1,15 +1,14 @@
+#!/usr/bin/env php
 <?php
 
-require_once '../vendor/Autoload.php';
-require_once '../src/jjok/Decomposer/Finder/Adapter/ChildFirstPhpAdapter.php';
-require_once '../src/jjok/Decomposer/Console/Command/KeepCommand.php';
-require_once '../src/jjok/Decomposer/Decomposer.php';
+$base = file_exists('vendor/Autoload.php')? '': '../';
 
-use Decomposer\Decomposer;
-use Decomposer\Console\Command\KeepCommand;
-use Symfony\Component\Console\Application;
+require_once $base.'vendor/Autoload.php';
+require_once $base.'src/jjok/Decomposer/Finder/Adapter/ChildFirstPhpAdapter.php';
+require_once $base.'src/jjok/Decomposer/Console/Command/KeepCommand.php';
+require_once $base.'src/jjok/Decomposer/Decomposer.php';
 
-// $application = new Application();
-$application = new Decomposer();
-// $application->add(new KeepCommand());
+$application = new Decomposer\Decomposer();
 $application->run();
+
+__HALT_COMPILER();
