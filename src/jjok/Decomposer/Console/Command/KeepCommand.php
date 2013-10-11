@@ -1,8 +1,8 @@
 <?php
 
-namespace Decomposer\Console\Command;
+namespace jjok\Decomposer\Console\Command;
 
-use Decomposer\Finder\Adapter\ChildFirstPhpAdapter;
+use jjok\Decomposer\Finder\Adapter\ChildFirstPhpAdapter;
 use Symfony\Component\Console\Command\Command;
 // use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

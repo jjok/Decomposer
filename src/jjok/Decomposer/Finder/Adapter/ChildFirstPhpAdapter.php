@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Decomposer\Finder\Adapter;
+namespace jjok\Decomposer\Finder\Adapter;
 
 use Symfony\Component\Finder\Adapter\AbstractAdapter;
 use Symfony\Component\Finder\Iterator;

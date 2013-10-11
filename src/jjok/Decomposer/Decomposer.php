@@ -1,8 +1,8 @@
 <?php
 
-namespace Decomposer;
+namespace jjok\Decomposer;
 
-use Decomposer\Console\Command\KeepCommand;
+use jjok\Decomposer\Console\Command\KeepCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 
