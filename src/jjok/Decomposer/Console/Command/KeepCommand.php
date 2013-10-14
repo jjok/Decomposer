@@ -21,11 +21,12 @@ class KeepCommand extends Command {
 	
 	protected function execute(InputInterface $input, OutputInterface $output) 
 	{
-		//TODO Do this somewhere else. Add a Config class
 		$xml = new \DOMDocument('1.0', 'UTF-8');
 		$xml->load('decomposer.dist.xml');
+		$paths_to_keep = $xml->getElementsByTagName('keep');
+// 		$paths_to_keep = $this->getApplication()->getPathsToKeep();
 
-		foreach($xml->getElementsByTagName('keep') as $keep) {
+		foreach($paths_to_keep as $keep) {
 
 			# Get the start directory
 			$start = $keep->getAttribute('start');
@@ -52,20 +53,20 @@ class KeepCommand extends Command {
 				$finder->notPath($path);
 			}
 			
-			$this->delete($finder, $output, true);
-// 			$this->delete($finder, $output, $input->getOption('dry-run'));
-			
-			$output->writeln('Finished.');
+// 			$this->deleteAll($finder, $output, true);
+			$this->deleteAll($finder, $output, $input->getOption('dry-run'));
 		}
+		
+		$output->writeln('Finished.');
 	}
 	
 	/**
-	 * 
+	 * Recursively delete all files found by the given Finder.
 	 * @param Finder $finder
 	 * @param OutputInterface $output
 	 * @param boolean $dry_run
 	 */
-	private function delete(Finder $finder, OutputInterface $output, $dry_run) {
+	private function deleteAll(Finder $finder, OutputInterface $output, $dry_run) {
 		foreach ($finder as $file) {
 				
 			# Delete all files
@@ -74,22 +75,24 @@ class KeepCommand extends Command {
 				if(!$dry_run) {
 					unlink($file->getPathname());
 				}
+				continue;
 			}
+			
 			# Delete any empty directories
-			else {
-				//TODO Do this better
-				# Keep non-empty directories
-				foreach(scandir($file) as $i) {
-					if(!in_array($i, array('.', '..'))) {
-						$output->writeln('Keeping '. $file->getPathname(), Output::VERBOSITY_VERBOSE);
-						continue 2;
-					}
-				}
-				$output->writeln('Deleting '. $file->getPathname(), Output::VERBOSITY_VERBOSE);
-				if(!$dry_run) {
-					rmdir($file->getPathname());
+// 			else {
+			//TODO Do this better
+			# Keep non-empty directories
+			foreach(scandir($file) as $i) {
+				if(!in_array($i, array('.', '..'))) {
+					$output->writeln('Keeping '. $file->getPathname(), Output::VERBOSITY_VERBOSE);
+					continue 2;
 				}
 			}
+			$output->writeln('Deleting '. $file->getPathname(), Output::VERBOSITY_VERBOSE);
+			if(!$dry_run) {
+				rmdir($file->getPathname());
+			}
+// 			}
 		}
 	}
 }
