@@ -2,8 +2,14 @@
 
 namespace jjok\Decomposer\Config;
 
+use jjok\Decomposer\Factory;
+
 class Loader {
 	
+	/**
+	 * 
+	 * @var string
+	 */
 	protected $name = 'decomposer';
 	
 	/**
@@ -12,41 +18,51 @@ class Loader {
 	 */
 	protected $format = 'xml';
 	
+	/**
+	 * 
+	 * @var string[]
+	 */
+	protected $filename_formats = array(
+		'%s.%s',
+		'%s.dist.%s'
+	);
+	
+	/**
+	 * 
+	 * @throws \Exception
+	 * @return unknown
+	 */
 	public function findConfigFile() {
-		$file = sprintf('%s.%s', $this->name, $this->format);
-		if(file_exists($file)) {
-			return $file;
-		}
-		
-		$file = sprintf('%s.dist.%s', $this->name, $this->format);
-		if(file_exists($file)) {
-			return $file;
+		foreach($this->filename_formats as $filename_format) {
+			$file = sprintf($filename_format, $this->name, $this->format);
+			if(file_exists($file)) {
+				return $file;
+			}
 		}
 		
 		//TODO create MissingConfigException
 		throw new \Exception('Config file not found.');
 	}
 
+	/**
+	 * 
+	 * @return \jjok\Decomposer\Config\Config
+	 */
 	public function load() {
-// 		echo $this->findConfigFile();
-		
 		$xml = new \DOMDocument('1.0', 'UTF-8');
 		$xml->load($this->findConfigFile());
 		
 		$paths = array();
 		foreach($xml->getElementsByTagName('keep') as $keep) {
-			//TODO create Factory for Paths.
-			$path_map = new Paths($keep->getAttribute('start'));
+			$path_map = Factory::createPaths($keep->getAttribute('start'));
 				
 			# Get the paths to keep
 			foreach($keep->getElementsByTagName('path') as $path) {
-				//TODO create Factory for Path.
-				$path_map->addPath(new Path($path->nodeValue));
+				$path_map->addPath(Factory::createPath($path->nodeValue));
 			}
 			$paths[] = $path_map;
 		}
 
-		//TODO create Factory for Config.
-		return new Config($paths);
+		return Factory::createConfig($paths);
 	}
 }
