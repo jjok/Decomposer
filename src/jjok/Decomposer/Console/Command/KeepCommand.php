@@ -21,22 +21,22 @@ class KeepCommand extends Command {
 	
 	protected function execute(InputInterface $input, OutputInterface $output) 
 	{
-		$xml = new \DOMDocument('1.0', 'UTF-8');
-		$xml->load('decomposer.dist.xml');
-		$paths_to_keep = $xml->getElementsByTagName('keep');
-// 		$paths_to_keep = $this->getApplication()->getPathsToKeep();
+// 		$xml = new \DOMDocument('1.0', 'UTF-8');
+// 		$xml->load('decomposer.dist.xml');
+// 		$paths_to_keep = $xml->getElementsByTagName('keep');
+		$config = $this->getApplication()->getConfig();
 
-		foreach($paths_to_keep as $keep) {
+		foreach($config->getPathsToKeep() as $paths) {
 
 			# Get the start directory
-			$start = $keep->getAttribute('start');
-			$output->writeln('Cleaning up '.$start);
+// 			$start = $keep->getAttribute('start');
+// 			$output->writeln('Cleaning up '.$start);
 			
 			# Get the paths to keep
-			$paths = array();
-			foreach($keep->getElementsByTagName('path') as $path) {
-				$paths[] = sprintf('/%s/', str_replace('/', '\/', $path->nodeValue));
-			}
+// 			$paths = array();
+// 			foreach($keep->getElementsByTagName('path') as $path) {
+// 				$paths[] = sprintf('/%s/', str_replace('/', '\/', $path->nodeValue));
+// 			}
 
 			# Create the finder
 			$finder = Finder::create();
@@ -45,12 +45,12 @@ class KeepCommand extends Command {
 			       ->ignoreVCS(false)
 			       ->ignoreDotFiles(false)
 			       ->ignoreUnreadableDirs(true)
-			       ->in($start);
+			       ->in($paths->getStart());
 			
 			# Add paths to keep
-			foreach($paths as $path) {
-// 				$finder->path($path);
-				$finder->notPath($path);
+			foreach($paths->getPaths() as $path) {
+// 				$finder->path($path->toRegEx());
+				$finder->notPath($path->toRegEx());
 			}
 			
 // 			$this->deleteAll($finder, $output, true);
