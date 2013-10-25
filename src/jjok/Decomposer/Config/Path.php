@@ -15,6 +15,6 @@ class Path {
 	}
 	
 	public function toRegEx() {
-		return sprintf('/%s/', str_replace('/', '\/', $this->name));
+		return sprintf('/^%s/', str_replace('/', '\/', $this->name));
 	}
 }
