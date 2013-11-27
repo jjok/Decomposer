@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decomposer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="resource/schema.xsd">
+	<keep start="some-start-path">
+		<path>test-path</path>
+	</keep>
+	<keep start="some-start-path2">
+		<path>test-path</path>
+		<path>another-test-path</path>
+	</keep>
+	<keep start="some-start-path3">
+		<path>test-path</path>
+		<path>another-test-path</path>
+		<path>another-test-path2</path>
+		<path>another-test-path3</path>
+	</keep>
+</decomposer>
