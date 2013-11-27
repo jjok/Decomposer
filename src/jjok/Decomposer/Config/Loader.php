@@ -27,6 +27,10 @@ class Loader {
 		'%s.dist.%s'
 	);
 	
+	/**
+	 * 
+	 * @param string $name
+	 */
 	public function __construct($name = 'decomposer') {
 		$this->name = $name;
 	}
@@ -44,8 +48,7 @@ class Loader {
 			}
 		}
 		
-		//TODO create MissingConfigException
-		throw new \Exception('Config file not found.');
+		throw new MissingConfigException('Config file not found.');
 	}
 
 	/**
