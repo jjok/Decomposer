@@ -19,8 +19,8 @@ class KeepCommand extends Command {
 	protected function configure() {
 		$this->setName('keep')
 		     ->setDescription('Removes files as specified in config file.')
-		     ->addOption('config', 'c', InputOption::VALUE_REQUIRED, '')
-		     ->addOption('dry-run', 'd', InputOption::VALUE_NONE, '');
+// 		     ->addOption('config', 'c', InputOption::VALUE_REQUIRED)
+		     ->addOption('dry-run', 'd', InputOption::VALUE_NONE);
 	}
 	
 	/**
@@ -116,26 +116,20 @@ class KeepCommand extends Command {
 				continue;
 			}
 			
-// 			else {
+
 			//TODO Do this better
 			# Keep non-empty directories
 			foreach(scandir($file) as $i) {
+				# Empty directories will only contain . and ..
 				if(!in_array($i, array('.', '..'))) {
-					if($output->getVerbosity() === Output::VERBOSITY_VERBOSE) {
-						$output->writeln('Keeping '. $file->getPathname());
-					}
 					continue 2;
 				}
 			}
 
 			# Delete any empty directories
-			if($output->getVerbosity() === Output::VERBOSITY_VERBOSE) {
-				$output->writeln('Deleting '. $file->getPathname());
-			}
 			if(!$dry_run) {
 				rmdir($file->getPathname());
 			}
-// 			}
 		}
 	}
 }
