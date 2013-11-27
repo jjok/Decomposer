@@ -25,4 +25,12 @@ class ChildFirstPhpAdapterTest extends PHPUnit_Framework_TestCase {
 		$adapter = new ChildFirstPhpAdapter();
 		$this->assertSame('child-first', $adapter->getName());
 	}
+	
+	/**
+	 * @covers jjok\Decomposer\Finder\Adapter\ChildFirstPhpAdapter::canBeUsed
+	 */
+	public function testAdapterCanBeUsed() {
+		$adapter = new ChildFirstPhpAdapter();
+		$this->assertTrue($adapter->isSupported());
+	}
 }

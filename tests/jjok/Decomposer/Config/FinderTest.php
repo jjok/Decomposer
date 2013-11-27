@@ -20,6 +20,11 @@ class FinderTest extends PHPUnit_Framework_TestCase {
 		$finder = new Finder('some-name');
 	}
 	
+	//TODO test setting different file names and extensions.
+	public function testTodo() {
+		$this->markTestIncomplete('This test has not been implemented yet.');
+	}
+
 	/**
 	 * @expectedException jjok\Decomposer\Config\MissingConfigException
 	 */

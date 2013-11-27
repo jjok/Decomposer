@@ -11,7 +11,9 @@ class DecomposerTest extends PHPUnit_Framework_TestCase {
 	public function setUp() {
 		$this->config = new Config\Config(array());
 	}
+	
 	/**
+ 	 * @covers jjok\Decomposer\Decomposer::__construct
 	 * @expectedException PHPUnit_Framework_Error
 	 */
 	public function testConfigIsRequired() {
@@ -19,6 +21,7 @@ class DecomposerTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	/**
+	 * @covers jjok\Decomposer\Decomposer::__construct
 	 * @expectedException PHPUnit_Framework_Error
 	 */
 	public function testVersionIsRequired() {
