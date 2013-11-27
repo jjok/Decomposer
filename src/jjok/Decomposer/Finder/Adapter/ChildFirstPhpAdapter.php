@@ -4,6 +4,7 @@ namespace jjok\Decomposer\Finder\Adapter;
 
 use Symfony\Component\Finder\Adapter\AbstractAdapter;
 use Symfony\Component\Finder\Iterator;
+use RecursiveIteratorIterator;
 
 /**
  * 
@@ -16,11 +17,13 @@ class ChildFirstPhpAdapter extends AbstractAdapter
      */
     public function searchInDirectory($dir)
     {
-        $flags = \RecursiveDirectoryIterator::UNIX_PATHS;
-
-        $iterator = new \RecursiveIteratorIterator(
-            new Iterator\RecursiveDirectoryIterator($dir, $flags, $this->ignoreUnreadableDirs),
-            \RecursiveIteratorIterator::CHILD_FIRST
+        $iterator = new RecursiveIteratorIterator(
+            new Iterator\RecursiveDirectoryIterator(
+            	$dir,
+            	\RecursiveDirectoryIterator::UNIX_PATHS,
+            	$this->ignoreUnreadableDirs
+			),
+            RecursiveIteratorIterator::CHILD_FIRST
         );
 
         return new Iterator\PathFilterIterator($iterator, $this->paths, $this->notPaths);
