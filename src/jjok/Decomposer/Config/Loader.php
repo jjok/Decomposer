@@ -4,52 +4,11 @@ namespace jjok\Decomposer\Config;
 
 use jjok\Decomposer\Factory;
 
+/**
+ * Loads a configuration file.
+ * @author Jonathan Jefferies
+ */
 class Loader {
-	
-	/**
-	 * 
-	 * @var string
-	 */
-	protected $name;
-	
-	/**
-	 * The config file format.
-	 * @var string
-	 */
-	protected $format = 'xml';
-	
-	/**
-	 * 
-	 * @var string[]
-	 */
-	protected $filename_formats = array(
-		'%s.%s',
-		'%s.dist.%s'
-	);
-	
-	/**
-	 * 
-	 * @param string $name
-	 */
-	public function __construct($name = 'decomposer') {
-		$this->name = $name;
-	}
-	
-	/**
-	 * Find the configuration file.
-	 * @throws \Exception
-	 * @return string
-	 */
-	public function findConfigFile() {
-		foreach($this->filename_formats as $filename_format) {
-			$file = sprintf($filename_format, $this->name, $this->format);
-			if(file_exists($file)) {
-				return $file;
-			}
-		}
-		
-		throw new MissingConfigException('Config file not found.');
-	}
 
 	/**
 	 * Load a configuration file.
