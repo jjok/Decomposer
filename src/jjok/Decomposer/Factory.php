@@ -15,7 +15,7 @@ class Factory {
 	 * @param string $path
 	 * @return Path
 	 */
-	public function createPath($path) {
+	public static function createPath($path) {
 		return new Path($path);
 	}
 	
@@ -24,7 +24,7 @@ class Factory {
 	 * @param string $start
 	 * @return Paths
 	 */
-	public function createPaths($start) {
+	public static function createPaths($start) {
 		return new Paths($start);
 	}
 	
@@ -33,7 +33,7 @@ class Factory {
 	 * @param array $paths
 	 * @return Config
 	 */
-	public function createConfig(array $paths) {
+	public static function createConfig(array $paths) {
 		return new Config($paths);
 	}
 	
@@ -41,7 +41,7 @@ class Factory {
 	 * 
 	 * @return Finder
 	 */
-	public function createFinder() {
+	public static function createFinder() {
 		return Finder::create()
 		       ->addAdapter(new ChildFirstPhpAdapter())
 		       ->setAdapter('child-first')
