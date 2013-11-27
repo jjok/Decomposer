@@ -17,11 +17,12 @@ See which files will be removed.
 TODO
 ----
 
-* Add `config` file option.
-* Add Factory to get Finder instance.
-* Rename Keep command to Clean or something.
-	* Add Remove functionality.
-* Add Validate command.
-* Rename `jjok\Decomposer\Config\Paths` to something more useful.
+- [ ] Add `config` file option.
+- [x] Add Factory to get Finder instance.
+- [ ] Rename Keep command to Clean or something.
+- [ ] Add Remove functionality.
+- [ ] Add Validate command.
+- [ ] Rename `jjok\Decomposer\Config\Paths` to something more useful.
+
 
 Copyright (c) 2013 Jonathan Jefferies

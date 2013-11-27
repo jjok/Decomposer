@@ -8,6 +8,10 @@ use jjok\Decomposer\Config\Paths;
 use jjok\Decomposer\Finder\Adapter\ChildFirstPhpAdapter;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * 
+ * @author Jonathan Jefferies
+ */
 class Factory {
 	
 	/**
