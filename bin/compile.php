@@ -3,11 +3,11 @@
 
 printf("Building...\n");
 
-require_once '../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 try {
-
-	$filename = '../decomposer.phar';
+// 	echo __DIR__, PHP_EOL;
+	$filename = 'decomposer.phar';
 
 	if(file_exists($filename)) {
 		printf("Deleting %s\n", $filename);
@@ -19,13 +19,13 @@ try {
 	       ->ignoreDotFiles(true)
 	       ->ignoreUnreadableDirs(true)
 	       ->files()
-	       ->in('..')
+	       ->in(__DIR__.'/..')
 	       ->path('src')
 	       ->path('vendor')
 	       ->path('bin/decomposer.php');
 	
 	$phar = new Phar($filename);
-	$files = $phar->buildFromIterator($finder, '..');
+	$files = $phar->buildFromIterator($finder, __DIR__.'/..');
 	
 // 	printf("Adding files...\n");
 // 	$max = 79;
@@ -38,7 +38,7 @@ try {
 // 		}
 // 	}
 
-	$phar->setStub(file_get_contents('stub.php'));
+	$phar->setStub(file_get_contents(__DIR__.'/stub.php'));
 }
 catch(Exception $e) {
 	echo $e;
