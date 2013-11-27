@@ -9,7 +9,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @covers jjok\Decomposer\Config\Loader::load
 	 */
-	public function testTodo() {
+	public function testLoaderLoadsTheGivenConfigFile() {
 		$loader = new Loader();
 		$config = $loader->load(__DIR__.'/../../../dummies/dummy.xml');
 		
@@ -25,11 +25,14 @@ class LoaderTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertSame('some-start-path', $paths_to_keep[0]->getStart());
 		$this->assertCount(1, $paths_to_keep[0]->getPaths());
+		$this->assertContainsOnlyInstancesOf('jjok\Decomposer\Config\Path', $paths_to_keep[0]->getPaths());
 		
 		$this->assertSame('some-start-path2', $paths_to_keep[1]->getStart());
 		$this->assertCount(2, $paths_to_keep[1]->getPaths());
+		$this->assertContainsOnlyInstancesOf('jjok\Decomposer\Config\Path', $paths_to_keep[1]->getPaths());
 		
 		$this->assertSame('some-start-path3', $paths_to_keep[2]->getStart());
 		$this->assertCount(4, $paths_to_keep[2]->getPaths());
+		$this->assertContainsOnlyInstancesOf('jjok\Decomposer\Config\Path', $paths_to_keep[2]->getPaths());
 	}
 }
