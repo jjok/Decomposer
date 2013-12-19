@@ -1,6 +1,8 @@
 Decomposer
 ==========
 
+[![Build Status](https://travis-ci.org/jjok/Decomposer.png?branch=master)](https://travis-ci.org/jjok/Decomposer)
+
 Deletes all the junk out of your project.
 
 Usage
@@ -17,7 +19,7 @@ See which files will be removed.
 TODO
 ----
 
-- [ ] Add `config` file option.
+- [ ] Add `config` file option?
 - [x] Add Factory to get Finder instance.
 - [ ] Rename Keep command to Clean or something.
 - [ ] Add Remove functionality.

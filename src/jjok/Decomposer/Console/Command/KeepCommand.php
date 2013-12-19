@@ -116,7 +116,6 @@ class KeepCommand extends Command {
 				continue;
 			}
 			
-
 			//TODO Do this better
 			# Keep non-empty directories
 			foreach(scandir($file) as $i) {
