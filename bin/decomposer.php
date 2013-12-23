@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * 
+ * @author Jonathan Jefferies
+ */
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 use jjok\Decomposer\Config\Finder;

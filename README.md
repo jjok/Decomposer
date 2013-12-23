@@ -19,12 +19,13 @@ See which files will be removed.
 TODO
 ----
 
+- [ ] Change `Path` in config file to be one of Starts With, Ends With , Starts and Ends With?
 - [ ] Add `config` file option?
 - [x] Add Factory to get Finder instance.
-- [ ] Rename Keep command to Clean or something.
+- [ ] Rename Keep command to Clean or something?
 - [ ] Add Remove functionality.
 - [ ] Add Validate command.
-- [ ] Rename `jjok\Decomposer\Config\Paths` to something more useful.
+- [ ] Rename `jjok\Decomposer\Config\Paths` to something more useful. 'Keep'?
 
 
 Copyright (c) 2013 Jonathan Jefferies
