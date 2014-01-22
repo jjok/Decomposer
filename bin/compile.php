@@ -2,7 +2,7 @@
 <?php
 
 /**
- *
+ * Compiles Decomposer to a Phar file.
  * @author Jonathan Jefferies
  */
 

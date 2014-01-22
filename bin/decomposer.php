@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * Decomposer bootstrap.
  * @author Jonathan Jefferies
  */
 

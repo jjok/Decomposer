@@ -5,6 +5,11 @@ Decomposer
 
 Deletes all the junk out of your project.
 
+Build
+-----
+
+	php bin/compile.php
+
 Usage
 -----
 
