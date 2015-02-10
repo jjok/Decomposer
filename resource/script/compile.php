@@ -6,7 +6,7 @@
  * @author Jonathan Jefferies
  */
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 try {
 	$filename = 'decomposer.phar';
@@ -23,13 +23,13 @@ try {
 	       ->ignoreDotFiles(true)
 	       ->ignoreUnreadableDirs(true)
 	       ->files()
-	       ->in(__DIR__.'/..')
+	       ->in(__DIR__.'/../..')
 	       ->path('src')
 	       ->path('vendor')
-	       ->path('bin/decomposer.php');
+	       ->path('resource/script/decomposer.php');
 	
 	$phar = new Phar($filename);
-	$files = $phar->buildFromIterator($finder, __DIR__.'/..');
+	$files = $phar->buildFromIterator($finder, __DIR__.'/../..');
 	
 	$phar->setStub(file_get_contents(__DIR__.'/stub.php'));
 }

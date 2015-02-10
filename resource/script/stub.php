@@ -7,6 +7,6 @@
 
 Phar::mapPhar('decomposer.phar');
 
-require_once 'phar://decomposer.phar/bin/decomposer.php';
+require_once 'phar://decomposer.phar/resource/script/decomposer.php';
 
 __HALT_COMPILER();

@@ -5,7 +5,7 @@
  * @author Jonathan Jefferies
  */
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 use jjok\Decomposer\Config\Finder;
 use jjok\Decomposer\Config\Loader;
