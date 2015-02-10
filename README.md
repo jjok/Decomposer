@@ -8,7 +8,7 @@ Deletes all the junk out of your project.
 Build
 -----
 
-	php bin/compile.php
+	php resource/script/compile.php
 
 Usage
 -----
@@ -33,4 +33,4 @@ TODO
 - [ ] Rename `jjok\Decomposer\Config\Paths` to something more useful. 'Keep'?
 
 
-Copyright (c) 2013 Jonathan Jefferies
+Copyright (c) 2015 Jonathan Jefferies
