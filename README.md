@@ -5,7 +5,7 @@ Decomposer
 
 Deletes all the junk out of your project.
 
-Add a config file called decomposer.xml to your project and list all the directories and files that you wan to keep.
+Add a config file called decomposer.xml to your project and list all the directories and files that you want to keep.
 
 	<?xml version="1.0" encoding="UTF-8"?>
 	<decomposer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
