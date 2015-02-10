@@ -9,7 +9,7 @@ namespace jjok\Decomposer\Config;
 class Path {
 
 	/**
-	 * 
+	 * The path name.
 	 * @var string
 	 */
 	protected $name;

@@ -13,6 +13,22 @@ use Symfony\Component\Console\Output\Output;
 class KeepCommand extends Command {
 	
 	/**
+	 * Factory for various objects.
+	 * @var Factory
+	 */
+	protected $factory;
+	
+	/**
+	 * Set dependencies.
+	 * @param Factory $factory
+	 */
+	public function __construct(Factory $factory) {
+		$this->factory = $factory;
+		
+		parent::__construct();
+	}
+	
+	/**
 	 * (non-PHPdoc)
 	 * @see \Symfony\Component\Console\Command\Command::configure()
 	 */
@@ -45,8 +61,8 @@ class KeepCommand extends Command {
 		foreach($config->getPathsToKeep() as $paths) {
 
 			# Create the finder
-			$finder = Factory::createFinder()
-					->in($paths->getStart());
+			$finder = $this->factory->createFinder()
+				->in($paths->getStart());
 			
 			# Add paths to keep
 			foreach($paths->getPaths() as $path) {
@@ -54,47 +70,11 @@ class KeepCommand extends Command {
 				$finder->notPath($path->toRegEx());
 			}
 			
-// 			$this->deleteAll($finder, $output, true);
 			$this->deleteAll($finder, $output, $input->getOption('dry-run'));
 		}
 		
-// 		foreach($config->getPathsToRemove() as $paths) {
-		
-// 			# Create the finder
-// 			$finder = Factory::createFinder()
-// 					->in($paths->getStart());
-			
-// 			# Add paths to remove
-// 			foreach($paths->getPaths() as $path) {
-// 				$finder->path($path->toRegEx());
-// 			}
-			
-// 			$this->deleteAll($finder, $output, $input->getOption('dry-run'));
-// 		}
-		
 		$output->writeln('Finished.');
 	}
-	
-// 	private function something(array $paths_list, $remove, OutputInterface $output) {
-// 		foreach($paths_list as $paths) {
-		
-// 			# Create the finder
-// 			$finder = Factory::createFinder()
-// 					->in($paths->getStart());
-				
-// 			# Add paths to remove
-// 			foreach($paths->getPaths() as $path) {
-// 				if($remove) {
-// 					$finder->path($path->toRegEx());
-// 				}
-// 				else {
-// 					$finder->notPath($path->toRegEx());
-// 				}
-// 			}
-			
-// 			$this->deleteAll($finder, $output, $input->getOption('dry-run'));
-// 		}
-// 	}
 	
 	/**
 	 * Recursively delete all files found by the given Finder.

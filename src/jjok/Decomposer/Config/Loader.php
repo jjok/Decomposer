@@ -9,27 +9,41 @@ use jjok\Decomposer\Factory;
  * @author Jonathan Jefferies
  */
 class Loader {
-
+	
+	/**
+	 * 
+	 * @var Factory
+	 */
+	protected $factory;
+	
+	/**
+	 * Set dependencies.
+	 * @param Factory $factory
+	 */
+	public function __construct(Factory $factory) {
+		$this->factory = $factory;
+	}
+	
 	/**
 	 * Load a configuration file.
 	 * @param string $filename The name of the config file to load.
 	 * @return \jjok\Decomposer\Config\Config
 	 */
 	public function load($filename) {
-		$xml = new \DOMDocument('1.0', 'UTF-8');
+		$xml = $this->factory->createDOMDocument();
 		$xml->load($filename);
 		
 		$path_maps = array();
 		foreach($xml->getElementsByTagName('keep') as $keep) {
-			$path_map = Factory::createPaths($keep->getAttribute('start'));
+			$path_map = $this->factory->createPaths($keep->getAttribute('start'));
 				
 			# Get the paths to keep
 			foreach($keep->getElementsByTagName('path') as $path) {
-				$path_map->addPath(Factory::createPath($path->nodeValue));
+				$path_map->addPath($this->factory->createPath($path->nodeValue));
 			}
 			$path_maps[] = $path_map;
 		}
 
-		return Factory::createConfig($path_maps);
+		return $this->factory->createConfig($path_maps);
 	}
 }

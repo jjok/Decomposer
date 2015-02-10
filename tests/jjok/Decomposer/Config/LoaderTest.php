@@ -2,6 +2,7 @@
 
 namespace jjok\Decomposer\Config;
 
+use jjok\Decomposer\Factory;
 use PHPUnit_Framework_TestCase;
 
 class LoaderTest extends PHPUnit_Framework_TestCase {
@@ -10,7 +11,7 @@ class LoaderTest extends PHPUnit_Framework_TestCase {
 	 * @covers jjok\Decomposer\Config\Loader::load
 	 */
 	public function testLoaderLoadsTheGivenConfigFile() {
-		$loader = new Loader();
+		$loader = new Loader(new Factory());
 		$config = $loader->load(__DIR__.'/../../../dummies/dummy.xml');
 		
 		$this->assertInstanceOf('jjok\Decomposer\Config\Config', $config);

@@ -2,6 +2,10 @@
 
 namespace jjok\Decomposer\Config;
 
+/**
+ * 
+ * @author Jonathan Jefferies
+ */
 class Paths {
 
 	/**

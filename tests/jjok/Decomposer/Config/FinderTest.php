@@ -2,6 +2,7 @@
 
 namespace jjok\Decomposer\Config;
 
+use jjok\Decomposer\Config\MissingConfigException;
 use PHPUnit_Framework_TestCase;
 
 class FinderTest extends PHPUnit_Framework_TestCase {
@@ -19,11 +20,6 @@ class FinderTest extends PHPUnit_Framework_TestCase {
 	public function testFileTypeIsRequired() {
 		$finder = new Finder('some-name');
 	}
-	
-	//TODO test setting different file names and extensions.
-	public function testTodo() {
-		$this->markTestIncomplete('This test has not been implemented yet.');
-	}
 
 	/**
 	 * @expectedException jjok\Decomposer\Config\MissingConfigException
@@ -33,7 +29,7 @@ class FinderTest extends PHPUnit_Framework_TestCase {
 		$finder->find();
 	}
 	
-	public function testDist() {
+	public function testDefaultConfigFileNameCanBeUsed() {
 		touch('test.dist.xml');
 		$finder = new Finder('test', 'xml');
 		$this->assertSame('test.dist.xml', $finder->find());
@@ -47,5 +43,35 @@ class FinderTest extends PHPUnit_Framework_TestCase {
 		$this->assertSame('test.xml', $finder->find());
 		unlink('test.dist.xml');
 		unlink('test.xml');
+	}
+	
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	public function testCustomConfigFileNameCanBeUsed() {
+		
+		try {
+			$finder = new Finder('my', 'config');
+			# This will throw an exception
+			$finder->find();
+			$this->assertTrue(false);
+		}
+		catch (MissingConfigException $e) {
+			$this->assertTrue(true);
+		}
+		
+		touch('my.dist.config');
+		
+		$finder = new Finder('my', 'config');
+		$this->assertSame('my.dist.config', $finder->find());
+		
+		touch('my.config');
+
+		$finder = new Finder('my', 'config');
+		$this->assertSame('my.config', $finder->find());
+
+		unlink('my.dist.config');
+		unlink('my.config');
 	}
 }
